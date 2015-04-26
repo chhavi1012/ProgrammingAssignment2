@@ -10,6 +10,7 @@ makeCacheMatrix <- function(x = matrix()) {
       i <<- NULL
     }
     get <- function() x
+    ##A setter function, use this to set a matrix to object created by makeCacheMatrix function
     setinv <- function(solve) i <<- solve
     getinv <- function() i
     list(set = set, get = get, setinv = setinv, getinv = getinv)
@@ -25,10 +26,12 @@ cacheSolve <- function(x, ...) {
     if(!is.null(i)) {
       message("getting cached data")
       return(i)
+      ## return the already calculated inversion
     }
     data <- x$get()
     i<- solve(data, ...)
     x$setinv(i)
     i
+    ## i  return the solved result
 
 }
